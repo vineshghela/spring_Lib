@@ -1,0 +1,22 @@
+DROP TABLE IF EXISTS `books`;
+DROP TABLE IF EXISTS `library`;
+
+CREATE TABLE IF NOT EXISTS `library` (
+	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `books` (
+	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(255) NOT NULL,
+	`author` VARCHAR(255) NOT NULL,
+	`publisher` VARCHAR(255) NOT NULL,
+	`price` DOUBLE NOT NULL,
+	`pages` INT NOT NULL,
+	`library_id` INT NOT NULL,
+	CONSTRAINT `fk_library_id` FOREIGN KEY (`library_id`)
+	REFERENCES `library` (`id`)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
